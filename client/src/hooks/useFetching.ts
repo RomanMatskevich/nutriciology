@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 
 const useFetching = (url: string) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -13,13 +14,15 @@ const useFetching = (url: string) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': process.env.VITE_REACT_BEARER_TOKEN || ''
+                'Authorization': process.env.REACT_APP_STRAPI_READ_TOKEN || ''
             }
         });
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
+        
         const result = await response.json();
+        console.log(result)
         setData(result);
       } catch (error) {
         setError(null);

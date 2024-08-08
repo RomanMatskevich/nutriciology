@@ -378,6 +378,7 @@ export interface ApiMainPageMainPage extends Schema.SingleType {
     Reviews: Attribute.Component<'component.text', true>;
     ContactMedia: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     AboutMe: Attribute.Component<'component.about-me'>;
+    PresentImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

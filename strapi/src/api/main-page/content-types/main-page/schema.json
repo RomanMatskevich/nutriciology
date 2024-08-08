@@ -29,19 +29,31 @@
       "component": "component.text"
     },
     "ContactMedia": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "AboutMe": {
       "type": "component",
       "repeatable": false,
       "component": "component.about-me"
+    },
+    "PresentImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

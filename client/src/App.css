@@ -1,0 +1,21 @@
+.slick-dots{
+    margin: 0 0 -30px 0 !important;
+}
+  
+.slick-dots li {
+    width: 30px !important;
+    height: 4px !important;
+    margin: 0 3px;
+    border: 1px solid #083D33;
+    border-radius: 4px;
+    transition: all 0.5s ease-in-out;
+    will-change: width;
+}
+
+.slick-dots li button::before{
+    visibility: hidden;
+}
+
+.slick-dots li.slick-active {
+    background-color: #083D33;
+}
