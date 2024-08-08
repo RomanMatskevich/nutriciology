@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_component_texts",
+  "info": {
+    "displayName": "Text",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    }
+  }
+}
