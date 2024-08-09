@@ -5,7 +5,7 @@ interface PresentProps {
 
 export default function Present({imgUrl} : PresentProps){
     return(
-        <div id="present" className="font-halvetica px-6 py-16 bg-yellow rounded-lg text-green">
+        <div id="present" className="font-helvetica px-6 py-16 bg-yellow rounded-lg text-green">
             <h4 className="font-swift text-3xl">Present /</h4>
             <p className="w-max mx-auto text-sm font-light italic">Безкоштовна консультація</p>
             <p className="border-b border-green pb-2">Подарунок:</p>

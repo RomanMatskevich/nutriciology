@@ -6,7 +6,7 @@ export default function Intro({imageUrl}: {imageUrl: string}){
                 src = {imageUrl || ''}
                 className="rounded-lg w-full h-full object-cover"
             />
-            <div className="flex justify-between items-end px-6 font-halvetica text-xs uppercase -mt-8">
+            <div className="flex justify-between items-end px-6 font-helvetica text-xs uppercase -mt-8">
                 <p className="uppercase">HEALTH MENTOR</p>
                 <img 
                     src = "/svg/molecule.svg"

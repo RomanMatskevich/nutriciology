@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        halvetica: ["Halvetica"],
+        helvetica: ["Helvetica"],
         swift: ["Swift"],
       },
       height: {
@@ -26,7 +26,7 @@ module.exports = {
       colors: {
         "green": "#083D33",
         "yellow": "#D9C0A3",
-        "grey": "#395D8E",
+        "grey": "#E9E9E9",
         
 
       },

@@ -9,22 +9,22 @@ interface AboutMeProps{
 
 export default function AboutMe({ suggestions, leftImgUrl, mainImgUrl, rightImgUrl }: AboutMeProps) {
     return (
-        <div className="font-halvetica text-green" id = "aboutMe">
+        <div className="font-helvetica text-green" id = "aboutMe">
             <h2 className="font-swift text-3xl px-6">About Me /</h2>
             <p className="w-max mx-auto text-sm font-light italic">Про мене</p>
             <div className="flex gap-4 h-60">
                 <img 
                     src = {leftImgUrl} 
-                    className="h-[60%] relative"
+                    className="h-[60%] relative w-1/4"
                     style={{ bottom: '-35%' }}
                 />
                 <img 
                     src = {mainImgUrl}
-                    className=""
+                    className="h-full w-1/2"
                 />
                 <img 
                     src = {rightImgUrl}
-                    className="h-[60%] relative"    
+                    className="h-[60%] relative w-1/4"    
                     style={{ bottom: '-5%' }}
                 />
             </div>
