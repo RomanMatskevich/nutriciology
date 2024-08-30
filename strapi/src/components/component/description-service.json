@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_component_description_services",
+  "info": {
+    "displayName": "descriptionService"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "component",
+      "repeatable": true,
+      "component": "component.text"
+    }
+  }
+}

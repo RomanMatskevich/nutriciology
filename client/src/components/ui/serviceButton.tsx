@@ -1,22 +1,27 @@
 import { IconArrowBarRight } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 
 interface ServiceButtonProps{
+    id: number
     title: string;
     price: number;
 }
 
 
-export default function ServiceButton({title, price} : ServiceButtonProps){
+export default function ServiceButton({title, price, id} : ServiceButtonProps){
     return(
         <div className="text-green flex flex-col items-end">
             <div className="w-full border-b border-green flex justify-between mb-8">
                 {title}
                 <span className="font-medium">{price.toLocaleString('uk-UA')} грн</span>
             </div>
-            <button className="flex border rounded-lg border-green px-5 py-3 gap-2.5 w-max">
+            <Link 
+                className="flex border text-xs md:text-base rounded-lg border-green font-normal px-5 py-2 md:px-5 md:py-3 lg:px-6 lg:py-[14px] gap-2.5 md:gap-4 uppercase w-max"
+                to={`/services/${id}`}
+            >
                 Детальніше
-                <IconArrowBarRight />
-            </button>
+                <IconArrowBarRight stroke = {1}/>
+            </Link>
         </div>
     )
 }

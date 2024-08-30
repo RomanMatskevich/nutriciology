@@ -362,41 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiMainPageMainPage extends Schema.SingleType {
-  collectionName: 'main_pages';
-  info: {
-    singularName: 'main-page';
-    pluralName: 'main-pages';
-    displayName: 'mainPage';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    mainPhoto: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    Reviews: Attribute.Component<'component.text', true>;
-    ContactMedia: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    AboutMe: Attribute.Component<'component.about-me'>;
-    PresentImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::main-page.main-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::main-page.main-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -823,6 +788,82 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiMainPageMainPage extends Schema.SingleType {
+  collectionName: 'main_pages';
+  info: {
+    singularName: 'main-page';
+    pluralName: 'main-pages';
+    displayName: 'mainPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    mainPhoto: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Reviews: Attribute.Component<'component.text', true>;
+    ContactMedia: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    AboutMe: Attribute.Component<'component.about-me'>;
+    PresentImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::main-page.main-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::main-page.main-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiServiceService extends Schema.CollectionType {
+  collectionName: 'services';
+  info: {
+    singularName: 'service';
+    pluralName: 'services';
+    displayName: 'Services';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    subTitle: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    price: Attribute.Integer & Attribute.Required;
+    hint: Attribute.Text;
+    PointsAfterServiceLeftCircle: Attribute.Component<'component.text', true>;
+    PointsAfterServiceRightCircle: Attribute.Component<'component.text', true>;
+    descriptionTags: Attribute.Component<'component.description-service'> &
+      Attribute.Required;
+    secondHint: Attribute.Text;
+    mustBeReadTags: Attribute.Component<'component.description-service'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -833,7 +874,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::main-page.main-page': ApiMainPageMainPage;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -842,6 +882,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::main-page.main-page': ApiMainPageMainPage;
+      'api::service.service': ApiServiceService;
     }
   }
 }

@@ -1,16 +1,21 @@
+import { lazy, Suspense, useRef } from 'react'
 import Header from "../components/header"
 import Intro from "../components/intro"
-import AboutMe from "../components/aboutMe"
+import AboutMe from "../components/main/aboutMe"
 import Present from "../components/present"
 import Testimonials from "../components/testimonials"
 import Contacts from "../components/contacts"
 import useFetching from "../hooks/useFetching"
 import Services from "../components/services"
-import { useRef } from "react"
+const Solutions = lazy(() => import('../components/solutions'));
 type SectionRef = React.RefObject<HTMLDivElement>;
+const mainPageUrl = `${process.env.REACT_APP_BACKEND_URL}/api/main-page?populate[mainPhoto]=*&populate[Reviews]=*&populate[ContactMedia]=*&populate[AboutMe][populate]=*&populate[PresentImage]=*`
+const servicesUrl = `${process.env.REACT_APP_BACKEND_URL}/api/services?fields[0]=subTitle&fields[1]=price`;
+
 
 export default function Main() {
-    const { data, loading, error } = useFetching(process.env.REACT_APP_BACKEND_URL + "/api/main-page?populate[mainPhoto]=*&populate[Reviews]=*&populate[ContactMedia]=*&populate[AboutMe][populate]=*&populate[PresentImage]=*")
+    const { data: mainPageData, loading: mainLoading, error: mainError } = useFetching(mainPageUrl)
+    const { data: serviceData, loading: servicesLoading, error: servicesErorr } = useFetching(servicesUrl)
     const AboutMeRef: SectionRef = useRef(null)
     const ServicesRef: SectionRef = useRef(null)
     const TestimonialsRef: SectionRef = useRef(null)
@@ -36,29 +41,32 @@ export default function Main() {
             ref: ContactsRef
         },
     ]
-
-    if (loading) return <div>Loading</div>
+    if(mainError || servicesErorr) return <div>adsads</div>;
+    if (mainLoading || servicesLoading) return <div>Loading</div>
     return (
         <div className="space-y-16">
             <Header buttons={HeaderButtons} scrollToSection = {scrollToSection}/>
-            <Intro imageUrl={process.env.REACT_APP_BACKEND_URL + data.data.attributes.mainPhoto.data.attributes.url} />
+            <Intro imageUrl={process.env.REACT_APP_BACKEND_URL + mainPageData.data.attributes.mainPhoto.data.attributes.url} />
             <div ref={AboutMeRef}>
                 <AboutMe
-                    suggestions={data.data.attributes.AboutMe.Suggestion}
-                    mainImgUrl={process.env.REACT_APP_BACKEND_URL + data.data.attributes.AboutMe.Main.data.attributes.url}
-                    leftImgUrl={process.env.REACT_APP_BACKEND_URL + data.data.attributes.AboutMe.Left.data.attributes.url}
-                    rightImgUrl={process.env.REACT_APP_BACKEND_URL + data.data.attributes.AboutMe.Right.data.attributes.url}
+                    suggestions={mainPageData.data.attributes.AboutMe.Suggestion}
+                    mainImgUrl={process.env.REACT_APP_BACKEND_URL + mainPageData.data.attributes.AboutMe.Main.data.attributes.url}
+                    leftImgUrl={process.env.REACT_APP_BACKEND_URL + mainPageData.data.attributes.AboutMe.Left.data.attributes.url}
+                    rightImgUrl={process.env.REACT_APP_BACKEND_URL + mainPageData.data.attributes.AboutMe.Right.data.attributes.url}
                 />
             </div>
-            <div ref={ServicesRef}>
-                <Services />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Solutions />
+            </Suspense>
+            <div ref={ServicesRef} >
+                <Services services = {serviceData.data}/>
             </div>
-            <Present imgUrl={process.env.REACT_APP_BACKEND_URL + data.data.attributes.PresentImage.data.attributes.url} />
+            <Present imgUrl={process.env.REACT_APP_BACKEND_URL + mainPageData.data.attributes.PresentImage.data.attributes.url} />
             <div ref={TestimonialsRef}>
-                <Testimonials reviews={data.data.attributes.Reviews} />
+                <Testimonials reviews={mainPageData.data.attributes.Reviews} />
             </div>
             <div ref={ContactsRef}>
-                <Contacts imgUrl={process.env.REACT_APP_BACKEND_URL + data.data.attributes.ContactMedia.data.attributes.url} />
+                <Contacts imgUrl={process.env.REACT_APP_BACKEND_URL + mainPageData.data.attributes.ContactMedia.data.attributes.url} />
             </div>
         </div>
     )
