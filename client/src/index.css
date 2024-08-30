@@ -36,3 +36,8 @@ code {
   font-family: "Swift";
   src: url('./assets/fonts/Swifteddemo.otf')
 }
+
+@font-face {
+  font-family: "Stroke-Light";
+  src: url('./assets/fonts/Stoke-Light.ttf')
+}

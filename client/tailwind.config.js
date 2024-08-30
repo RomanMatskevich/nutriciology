@@ -7,6 +7,7 @@ module.exports = {
       fontFamily: {
         helvetica: ["Helvetica"],
         swift: ["Swift"],
+        strokeLight: ["Stroke-Light"]
       },
       height: {
 
