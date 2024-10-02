@@ -4,7 +4,7 @@ export default function GiftSuccess() {
     return (
         <div className="py-10 px-6 text-green text-xs md:text-lg lg:text-xl font-light">
             <h1 className="font-swift text-3xl md:text-4xl">Get your gift!</h1>
-            <h2 className="italic border-b border-green pb-4">
+            <h2 className="font-robotoItalic border-b border-green pb-4">
                 Дякую за ваш інтерес! Я щойно відправила ваш безкоштовний гайд на вказану електронну адресу.
             </h2>
             <h3 className="font-normal pb-5 pt-10 md:pt-14 lg:pt-24">Що Далі:</h3>

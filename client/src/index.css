@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Avenir, Roboto, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -21,16 +21,24 @@ body {
   overflow-x: hidden;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body.scroll-blocked {
+  overflow: hidden;
+}
+
+body.scroll-blocked ::-webkit-scrollbar-thumb{
+  display: hidden;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 
-@font-face {
-  font-family: "Helvetica";
-  src: url('./assets/fonts/Helvetica.ttf')
-}
 
 @font-face {
   font-family: "Swift";

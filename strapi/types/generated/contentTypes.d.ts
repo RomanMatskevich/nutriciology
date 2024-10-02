@@ -846,6 +846,9 @@ export interface ApiServiceService extends Schema.CollectionType {
       Attribute.Required;
     secondHint: Attribute.Text;
     mustBeReadTags: Attribute.Component<'component.description-service'>;
+    urgentlyField: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
