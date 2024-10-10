@@ -23,11 +23,6 @@
         "audios"
       ]
     },
-    "Reviews": {
-      "type": "component",
-      "repeatable": true,
-      "component": "component.text"
-    },
     "ContactMedia": {
       "type": "media",
       "multiple": false,
@@ -54,6 +49,16 @@
         "videos",
         "audios"
       ]
+    },
+    "Reviews": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

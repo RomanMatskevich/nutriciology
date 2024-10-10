@@ -1,0 +1,83 @@
+version: "3.5"
+
+services:
+  strapi:
+    container_name: cms
+    restart: unless-stopped
+    build:
+      context: ./strapi
+      dockerfile: Dockerfile
+    ports:
+      - "1337:1337"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=1337
+      - APP_KEYS=sTdb/sdU1cAM66x7RNb/wA==,6ZL6oeDM9JYyNomINcpjjw==,ZxeLwA5GMC9fPv2iFg2ajA==,o5pDltAtjF6JgY2mxRle4Q==
+      - API_TOKEN_SALT=kz/dDXfexnTZz4dAYoVXEg==
+      - ADMIN_JWT_SECRET=//frdR1v2cZWQPrGud7c2Q==
+      - TRANSFER_TOKEN_SALT=KuTHE0D81wYyrpY4Vw/2gw==
+      - DATABASE_CLIENT=sqlite
+      - DATABASE_FILENAME=.tmp/data.db
+      - JWT_SECRET=yTwoxszNYPUM8SsD2BHFUQ==
+      - MAIL_HOST=smtp.gmail.com
+      - MAIL_USER=oksana.tymoshchuk24@gmail.com
+      - MAIL_PASS=islyeglnugyihpid
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.strapi-admin.rule=Host(`admin.oksana-tymoshchuk.com`)"
+      - "traefik.http.routers.strapi-admin.entrypoints=websecure"
+      - "traefik.http.routers.strapi-admin.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.strapi-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.strapi-secure-redirect.redirectscheme.permanent=true"
+      - "traefik.http.routers.strapi-redirs.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.strapi-redirs.entrypoints=web"
+      - "traefik.http.routers.strapi-redirs.middlewares=strapi-https-redirect"
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_REACT_BACKEND_API_URL=admin.oksana-tymoshchuk.com
+      - VITE_REACT_BEARER_TOKEN=Bearer 18517b73d5f1b74fd7308eb6ffbbaa1f47b4be40ca1aea645f8f199112790b0fc84f2e082e98440779bf57606f00b57fe46036a9503445794dc3c68f2323b0b5ccb1d204f19c3edf2c2daf252c5b70c8fa72943a0027267bf8aa60b126ee810a45334b4825569b333e1e1b65ccd86628afb84af6f400e7c64293babdb9006d15
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.client-server.rule=Host(`oksana-tymoshchuk.com`)"
+      - "traefik.http.routers.client-server.entrypoints=websecure"
+      - "traefik.http.routers.client-server.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.secure-redirect.redirectscheme.permanent=true"
+      - "traefik.http.routers.redirs.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.redirs.entrypoints=web"
+      - "traefik.http.routers.redirs.middlewares=redirect-to-https"
+
+  reverse-proxy:
+    image: traefik:v2.4
+    container_name: "traefik"
+    command:
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=hello@paularah.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "443:443"
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+volumes:
+  build:

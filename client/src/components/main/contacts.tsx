@@ -16,7 +16,8 @@ export default function Contacts({ imgUrl }: ContactsProps) {
         <div className="col-span-2 col-start-2 md:col-start-2 md:col-span-4">
           <img
             src={imgUrl}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-lg"
+            loading="lazy"
           />
         </div>
         <div className="col-span-12 md:col-start-7 md:col-span-5 flex flex-col justify-center">
@@ -24,11 +25,11 @@ export default function Contacts({ imgUrl }: ContactsProps) {
             Саме час почати піклуватись про своє харчування та здоровʼя.
           </p>
           <div className="flex flex-col md:flex-row md:justify-center gap-5 md:gap-10 mt-10 md:mt-0">
-            <a className="flex border rounded-lg border-yellow px-5 py-3 gap-2.5 w-max mx-auto md:mx-0">
+            <a className="flex border rounded-lg border-yellow hover:bg-yellow hover:text-green px-5 py-3 gap-2.5 w-max mx-auto md:mx-0 cursor-pointer">
               Instagram
               <IconArrowBarRight />
             </a>
-            <a className="flex border rounded-lg border-yellow px-5 py-3 gap-2.5 w-max mx-auto md:mx-0">
+            <a className="flex border rounded-lg border-yellow px-5 py-3 gap-2.5 w-max mx-auto md:mx-0 hover:bg-yellow hover:text-green cursor-pointer">
               Telegram
               <IconArrowBarRight />
             </a>

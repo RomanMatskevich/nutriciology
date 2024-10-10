@@ -14,6 +14,7 @@ export default function Solutions() {
           src="/svg/human-medium.svg"
           alt="human"
           className="w-full h-full"
+          loading="lazy"
         />
       </picture>
       <div className="md:text-lg lg:text-xl font-light  mt-10  md:mt-16 md:mb-24 w-full md:mx-auto md:w-max text-left font-roboto">

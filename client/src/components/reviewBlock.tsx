@@ -1,24 +1,14 @@
-import { useState } from "react"
-import { IconArrowBarDown } from "@tabler/icons-react";
-
-export default function ReviewBlock({text}: {text:string}){
-    const [isExpanded, setIsExpanded] = useState(false);
-    const toggleExpansion = () => {
-        setIsExpanded(!isExpanded);
-    };
-    const textStyles = isExpanded
-        ? ''
-        : 'line-clamp-4';
-    return(
-        <div className="border border-green rounded-lg p-5 text-green">
-            <p className={`${textStyles}`}>{text}</p>
-            <button
-                onClick={toggleExpansion}
-                className="mt-2 mx-auto space-y-1 flex flex-col"
-            >
-                {isExpanded ? 'Приховати' : 'Читати ще'}
-                <IconArrowBarDown size={16} className={`mx-auto ${isExpanded ? 'rotate-180' : '' }`} />
-            </button>
-        </div>
-    )
+import { Image as ImageType } from "@/types";
+import Image from "next/image";
+export default function ReviewBlock({ img }: { img: ImageType }) {
+  return (
+    <div className="rounded-lg p-5 text-green bg-green flex flex-col justify-center">
+      <Image
+        src={process.env.NEXT_PUBLIC_STRAPI_BACKEND_URL + img.url}
+        alt={img.alternativeText || ""}
+        width={img.width || 200}
+        height={img.height || 200}
+      />
+    </div>
+  );
 }

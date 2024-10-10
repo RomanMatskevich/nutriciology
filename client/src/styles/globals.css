@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   font-family: Inter, system-ui, Avenir, Roboto, Arial, sans-serif;
   line-height: 1.5;
@@ -38,14 +39,56 @@ code {
     monospace;
 }
 
+.slick-dots {
+  margin: 0 0 -30px 0 !important;
+}
+
+.slick-dots li {
+  width: 30px !important;
+  height: 4px !important;
+  margin: 0 3px;
+  border: 1px solid #083d33;
+  border-radius: 4px;
+  transition: all 0.5s ease-in-out;
+  will-change: width;
+}
+
+.slick-dots li button::before {
+  visibility: hidden;
+}
+
+.slick-dots li.slick-active {
+  background-color: #083d33;
+}
+
+.slick-slide{
+  height: auto !important
+}
+
+.slick-slide div{
+  height: 100%;
+}
+
+.slick-track{
+  display: flex !important;
+  align-items: stretch !important
+}
+
+.stripe {
+  width: 50vw;
+  height: 50vw;
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+
 
 
 @font-face {
   font-family: "Swift";
-  src: url('./assets/fonts/Swifteddemo.otf')
+  src: url('./../assets/fonts/Swifteddemo.otf')
 }
 
 @font-face {
   font-family: "Stroke-Light";
-  src: url('./assets/fonts/Stoke-Light.ttf')
+  src: url('./../assets/fonts/Stoke-Light.ttf')
 }

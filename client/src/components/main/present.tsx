@@ -39,7 +39,7 @@ export default function Present({ imgUrl }: PresentProps) {
           </div>
         </div>
         <div className="flex justify-end mt-10 md:mt-0">
-          <img src={imgUrl} className=" object-cover w-full md:w-3/4 h-[500px] sm:h-[670px] md:h-full rounded-lg"/>
+          <img src={imgUrl} className=" object-cover w-full md:w-3/4 h-[500px] sm:h-[670px] md:h-full rounded-lg" loading="lazy"/>
         </div>
       </div>
 
