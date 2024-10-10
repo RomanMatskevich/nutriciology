@@ -1,7 +1,6 @@
 import { IconX, IconGift } from "@tabler/icons-react"
 import { useReducer } from "react"
 import { validateFullName, validateEmail } from "../../validators"
-import { stat } from "fs"
 interface FormProps {
     isShow: boolean
     toggleShow: () => void

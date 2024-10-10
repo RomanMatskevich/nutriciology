@@ -1,4 +1,3 @@
-import { useState } from 'react';
 interface CheckBoxProps{
   isChecked: boolean
   setIsChecked: (value: boolean) => void

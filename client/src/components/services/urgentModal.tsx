@@ -10,12 +10,13 @@ interface ModalProps {
 export default function UrgentModal({
   isOpen,
   setIsOpen,
-  setUrgentlyValue,
 }: ModalProps) {
   useEffect(() => {
-    isOpen
-      ? document.body.classList.add("scroll-blocked")
-      : document.body.classList.remove("scroll-blocked");
+    if (isOpen) {
+      document.body.classList.add("scroll-blocked");
+    } else {
+      document.body.classList.remove("scroll-blocked");
+    }
     return () => {
       document.body.classList.remove("scroll-blocked");
     };
